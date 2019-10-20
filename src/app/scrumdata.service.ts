@@ -20,7 +20,7 @@ export class ScrumdataService {
 
    postUserData(scrumUser: Scrumuser): Observable<any> {
       console.log({'email':scrumUser['email'], 'password':scrumUser['password'], 'full_name': scrumUser['fullname'], 'usertype':scrumUser['type'], 'projname':scrumUser['projname'] } )
-      return this.http.post(this.url, {'email':scrumUser['email'], 'password':scrumUser['password'], 'full_name': scrumUser['fullname'], 'usertype':scrumUser['type'], 'projname':scrumUser['projname'] } , this.httpOptions);
+      return this.http.post(this.url, {'email':scrumUser['email'], 'password':scrumUser['password'], 'password1':'scrumUser'['password1'], 'full_name': scrumUser['fullname'], 'usertype':scrumUser['type'], 'projname':scrumUser['projname'] } , this.httpOptions);
 
   }
 

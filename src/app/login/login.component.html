@@ -6,19 +6,19 @@
       <div class="row">
         <div class="col-lg image">
             <img class="row-img mt-5" src="https://res.cloudinary.com/josh4324/image/upload/v1571495000/lap_pfz29w.jpg" alt="person with laptop">
-            <a href="#signup" class="text-center center">Create an Account</a>
+            <a href="/signup" class="text-center center">Don't have an Account, Sign Up Here</a>
         </div>
 
         <div class="col-lg">
-          <form #form2="ngForm" (ngSubmit)="login(form2)">
+          <form #form2="ngForm" (ngSubmit)="onLoginSubmit()">
 
             <div class="form-group mt-5">
               <label for="email">Email address</label>
               <div class="input-container">
                 <i class="fas fa-envelope-square icon"></i>
-                <input type="email" class="form-control px-5" id="email1" #email1=ngModel name="email" [(ngModel)]="logindata.email" aria-describedby="email" placeholder="Your email" [class.is-invalid]="email1.invalid && form2.submitted"  name="email" required pattern="\w+@\w+.com">
+                <input type="email" class="form-control px-5" id="email" #email=ngModel name="email" [(ngModel)]="scrumUserLoginData.email" aria-describedby="email" placeholder="Your email" [class.is-invalid]="email.invalid && email.touched"  required pattern="\w+@\w+.com">
               </div>
-              <div [hidden]="!form2.submitted || email1.valid" class="alert alert-danger px-2 py-2">
+              <div [hidden]="email.untouched || email.valid" class="alert alert-danger px-2 py-2">
                   Enter your email in the correct format
               </div>
             </div>
@@ -27,9 +27,9 @@
               <label for="lpassword">Password</label>
               <div class="input-container">
                 <i class="fas fa-lock icon"></i>
-                <input type="password" class="form-control px-5" #lpassword="ngModel" name="password" [class.is-invalid]="lpassword.invalid && form2.submitted"   [(ngModel)]="logindata.password" id="lpassword" required placeholder="Password">
+                <input type="password" class="form-control px-5" #password="ngModel" name="password" [class.is-invalid]="password.invalid && password.touched"   [(ngModel)]="scrumUserLoginData.password" id="password" required placeholder="Password">
               </div>
-              <div [hidden]="!form2.submitted || lpassword.valid" class="alert alert-danger px-2 py-2">
+              <div [hidden]="password.untouched || password.valid" class="alert alert-danger px-2 py-2">
                   Enter your password
               </div>
             </div>
@@ -38,16 +38,21 @@
               <label for="projectName">Project Name</label>
               <div class="input-container">
                 <i class="fas fa-tasks icon"></i>
-                <input type="text" class="form-control px-5" name="projectName" #projectName="ngModel" id="projectName" [class.is-invalid]="projectName.invalid && form2.submitted"   [(ngModel)]="logindata.projectName" required placeholder="Project Name">
+                <input type="text" class="form-control px-5" name="projname" #projname="ngModel" id="projectName" [class.is-invalid]="projname.invalid && projname.touched"   [(ngModel)]="scrumUserLoginData.projname" required placeholder="Project Name">
               </div>
-              <div [hidden]="!form2.submitted || projectName.valid" class="alert alert-danger px-2 py-2">
+              <div [hidden]="projname.untouched || projname.valid" class="alert alert-danger px-2 py-2">
                   Enter the Project Name
               </div>
             </div>
 
 
             <button type="submit" class="btn btn-primary mt-5">Log In</button>
+
+            <div [hidden]="!form2.submitted" class="alert alert-danger text-center mt-3 px-2 py-2">
+              <h5>{{ Response }}</h5>
+          </div>
           </form>
+
         </div>
 
 

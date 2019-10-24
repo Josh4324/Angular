@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { ScrumboardComponent } from './scrumboard/scrumboard.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -16,6 +19,8 @@ import { LoginComponent } from './login/login.component';
     routingComponents,
     SignupComponent,
     LoginComponent,
+    ScrumboardComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,9 +20,23 @@ nav a {
   }
 
   h1 {
-    color: #369; 
-    font-family: Arial, Helvetica, sans-serif;   
+    color: white;
     font-size: 250%;
   }
 
-  
+  a {
+    padding: 5px 10px;
+    margin-left:10px;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 4px;
+    color: blue !important;
+  }
+
+  .inline {
+    display:inline-block;
+    text-align: center;
+  }
+

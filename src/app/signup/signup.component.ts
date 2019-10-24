@@ -22,9 +22,10 @@ export class SignupComponent implements OnInit {
     fullname: null,
     password: null,
     type: 'Regular User',
-    projname: null,
+    projname: '',
   };
 
+  Response = '';
 
 
   ngOnInit() {
@@ -33,13 +34,16 @@ export class SignupComponent implements OnInit {
 
   create(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
-    if (form.valid) {
+    if (form.valid ) {
       this.Scrumdata.postUserData(this.scrumUser).subscribe(
         result => {
           console.log('success: ', result);
-          form.resetForm()
+          this.Response = 'Account was created Successfully';
         },
-        error => console.log('error: ', error)
+        error => {
+          console.log('error: ', error)
+          this.Response = 'SignUp Failed';
+        }
      );
     }
   }

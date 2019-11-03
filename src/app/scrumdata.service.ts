@@ -15,11 +15,6 @@ export class ScrumdataService {
   _scrumProjectUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumprojects/';
   goalUrl = 'http://liveapi.chatscrum.com/scrum/api/scrumgoals/'
 
-  
-  token = localStorage.getItem('token');
-  Auth = JSON.parse(localStorage.getItem('Auth'));
-  encode = btoa(`${this.Auth.email}:${this.Auth.password}`);
- 
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

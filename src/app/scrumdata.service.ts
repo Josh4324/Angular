@@ -42,11 +42,6 @@ export class ScrumdataService {
     return this.http.post(this._scrumProjectUrl, { 'email' : projuser['email'], 'full_name' : projuser['fullname'], 'password':'password', 'projname': projuser['projname'], 'usertype':'Owner', 'username':'josh'}, this.httpOptions);
   }
 
-  
-  updateGoal(id,status) {
-    return this.http.patch(this.goalUrl + id + '/', {'status' : status} , {headers: new HttpHeaders().set('Authorization', `Basic ${this.encode}==`)} );
-  }
-  
 
 }
 

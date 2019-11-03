@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 import { AuthGuard } from './auth.guard';
+import { CreateprojectComponent } from './createproject/createproject.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'scrumboard', component: ScrumboardComponent, canActivate:[AuthGuard] },
+  {path: 'createproject', component: CreateprojectComponent},
+  { path: 'scrumboard/:project_id', component: ScrumboardComponent, canActivate:[AuthGuard] },
 
 ];
 

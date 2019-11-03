@@ -1,1 +1,216 @@
-<h3 class="scrum">scrumboard works!</h3>
+
+<div class="row table mt-3">
+    <div class="col ">
+        <h3>TFTW List</h3>
+        <div cdkDropList #TFTWList="cdkDropList" [cdkDropListData]="TFTW"
+        [cdkDropListConnectedTo]="[TFTDList, VERIFYList, DONEList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of TFTW;" class="pd" cdkDrag>
+                <div>{{ item[0] }}</div>
+                {{ item[1] }}
+              <div class="hide">
+                
+                {{item[2]}}
+                {{item[3]}}
+              </div> 
+              
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h3>TFTD List</h3>
+        <div cdkDropList #TFTDList="cdkDropList" [cdkDropListData]="TFTD"
+        [cdkDropListConnectedTo]="[TFTWList, VERIFYList, DONEList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of TFTD;" class="pd" cdkDrag [cdkDragData]="item">
+                <div> {{ item[0] }}</div>
+                {{ item[1] }}
+                <div class="hide">
+                 
+                  {{item[2]}}
+                  {{item[3]}}
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h3>VERIFY List</h3>
+        <div cdkDropList #VERIFYList="cdkDropList" [cdkDropListData]="VERIFY"
+        [cdkDropListConnectedTo]="[TFTWList, TFTDList, DONEList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of VERIFY;" cdkDrag class="pd" [cdkDragData]="item">
+                <div>{{ item[0] }}</div>
+                {{ item[1] }}
+                <div class="hide">
+                  
+                  {{item[2]}}
+                  {{item[3]}}
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h3>DONE List</h3>
+        <div cdkDropList #DONEList="cdkDropList" [cdkDropListData]="DONE"
+        [cdkDropListConnectedTo]="[TFTWList, TFTDList, VERIFYList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of DONE;" cdkDrag class="pd" [cdkDragData]="item">
+                <div>{{ item[0] }}</div>
+                {{ item[1] }}
+              <div class="hide">
+                
+                {{item[2]}}
+                {{item[3]}}
+              </div> 
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+    <div class="col-md-4">
+        <h3>Todo List</h3>
+        <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doingList, doneList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of todo;" cdkDrag>
+                {{ item }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Doing List</h3>
+        <div cdkDropList #doingList="cdkDropList" [cdkDropListData]="doing"
+        [cdkDropListConnectedTo]="[todoList, doneList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of doing;" cdkDrag>
+                {{ item }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Done List</h3>
+        <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[doingList, todoList]" 
+        (cdkDropListDropped)=drop($event)>
+            <div *ngFor="let item of done;" cdkDrag>
+                {{ item }}
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<table *ngFor="let participants of _participants" class="table">
+    <p><strong>{{ participants['user']['nickname'] }}</strong></p>
+
+    <tr>
+        <th>Tasks for the Week</th>
+        <th>Tasks for the Day</th>
+        <th>Verify</th>
+        <th>Done</th>
+    </tr>
+
+    <tr>
+        <td>
+            <div *ngFor="let goal of participants['scrumgoal_set']">
+                <div *ngIf="goal['status'] == 0 && goal['user'] == participants['id']">
+                    {{ goal['name']}} <br>
+                    {{ goal['id'] }}
+                    <p>status: {{ goal['status'] }}</p>
+                </div>
+            </div>
+        </td>
+            
+        <td>
+            <div *ngFor="let goal of participants['scrumgoal_set']">
+                <div *ngIf="goal['status'] == 1 && goal['user'] == participants['id']">
+                    {{ goal['name']}} <br>
+                    {{ goal['id'] }}
+                    <p>status: {{ goal['status'] }}</p>
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div *ngFor="let goal of participants['scrumgoal_set']">
+                <div *ngIf="goal['status'] == 2 && goal['user'] == participants['id']">
+                    {{ goal['name']}} <br>
+                    {{ goal['id'] }}
+                    <p>status: {{ goal['status'] }}</p>
+                </div>
+            </div>
+        </td>
+
+        <td>
+            <div *ngFor="let goal of participants['scrumgoal_set']">
+                <div *ngIf="goal['status'] == 3 && goal['user'] == participants['id']">
+                    {{ goal['name']}} <br>
+                    {{ goal['id'] }}
+                    <p>status: {{ goal['status'] }}</p>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table> -->

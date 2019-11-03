@@ -1,16 +1,16 @@
 
   <div class="container-fluid auto px-4 py-4 contain card" id="signup">
 
-    <h3 class="text-center">Sign Up</h3>
+    <h3 class="text-center">Create Project</h3>
 
     <div class="row">
-      <div class="col-lg">
-        <form #userSignupForm="ngForm" novalidate  (ngSubmit)="create(userSignupForm)">
+      <div class="col-lg mt-5">
+        <form #userSignupForm="ngForm" novalidate  (ngSubmit)="onLoginProject()">
           <div class="form-group">
               <label for="fullname">Full Name</label>
               <div class="input-container">
                   <i class="fas fa-user icon"></i>
-                  <input type="text" class="form-control px-5" id="fullname" #fullname="ngModel" [class.is-invalid]="fullname.touched && fullname.invalid" name="fullname" required [(ngModel)]="scrumUser.fullname" aria-describedby="fullname" placeholder="Full Name">
+                  <input type="text" class="form-control px-5" id="fullname" #fullname="ngModel" [class.is-invalid]="fullname.touched && fullname.invalid" name="fullname" required [(ngModel)]="ProjectData.fullname" aria-describedby="fullname" placeholder="Full Name">
               </div>
               <div [hidden]="fullname.untouched || fullname.valid" class="alert alert-danger px-2 py-2">
                   Enter your Full Name
@@ -21,7 +21,7 @@
             <label for="email">Email address</label>
             <div class="input-container">
               <i class="fas fa-envelope-square icon"></i>
-              <input type="email" class="form-control px-5" id="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched"  name="email" required pattern="\w+@\w+.com" [(ngModel)]="scrumUser.email" aria-describedby="email" placeholder="Your email">
+              <input type="email" class="form-control px-5" id="email" #email="ngModel" [class.is-invalid]="email.invalid && email.touched"  name="email" required pattern="\w+@\w+.com" [(ngModel)]="ProjectData.email" aria-describedby="email" placeholder="Your email">
             </div>
             <div [hidden]="email.untouched ||  email.valid" class="alert alert-danger px-2 py-2">
                 Enter your email in the correct format
@@ -30,26 +30,15 @@
           </div>
 
           <div class="form-group">
-            <label for="userType">User Type</label>
-            <select class="form-control" name="usertype" required [(ngModel)]="scrumUser.type" id="userType">
-              <option *ngFor="let eachElement of userTypes">{{ eachElement }}</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
+            <label for="projectName">Project Name</label>
             <div class="input-container">
-              <i class="fas fa-lock icon"></i>
-              <input type="password" class="form-control px-5" name="password" #password="ngModel" [class.is-invalid]="password.invalid && password.touched" required [(ngModel)]="scrumUser.password" id="password" placeholder="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+              <i class="fas fa-tasks icon"></i>
+              <input type="text" class="form-control px-5" name="projname" #projname="ngModel" id="projectName" [class.is-invalid]="projname.invalid && projname.touched"   [(ngModel)]="ProjectData.projname" required placeholder="Project Name">
             </div>
-            <div [hidden]="password.untouched || password.valid" class="alert alert-danger px-2 py-2">
-                Password must have at least 8 characters with 1 special character and 1 number
+            <div [hidden]="projname.untouched || projname.valid" class="alert alert-danger px-2 py-2">
+                Enter the Project Name
             </div>
           </div>
-
-
-
-
 
           <button  type="submit" class="btn btn-primary mt-3">Register</button>
 
@@ -63,7 +52,7 @@
       <div class="col-lg image">
           <img class="row-img mt-5" src="https://res.cloudinary.com/josh4324/image/upload/v1571495000/lap_pfz29w.jpg" alt="person with laptop">
           <a href="/login" class="text-center center">Already have an Account, Login Here</a>
-        </div>
+    </div>
 
     </div>
 

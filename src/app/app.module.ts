@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AuthGuard } from './auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateprojectComponent } from './createproject/createproject.component';
+import { ChangeroleComponent } from './changerole/changerole.component';
 
 
 
@@ -25,6 +26,7 @@ import { CreateprojectComponent } from './createproject/createproject.component'
     ScrumboardComponent,
     HomepageComponent,
     CreateprojectComponent,
+    ChangeroleComponent,
   ],
   imports: [
     BrowserModule,

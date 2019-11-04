@@ -19,6 +19,7 @@ export class ScrumboardComponent implements OnInit {
   TFTD = [];
   VERIFY = [];
   DONE = []
+  loggedUser;
 
  
 
@@ -28,8 +29,25 @@ export class ScrumboardComponent implements OnInit {
   _participants = [];
 
   ngOnInit() {
+    this.loggedUser = this._scrumdataService.getUser();
     this.project_id = parseInt((this._route.snapshot.paramMap.get('project_id')))
     this.getProjectGoals();
+  }
+
+  calculateRole(val){
+    val = val.split("-");
+    if((val[3] % 4) === 3 ){
+      return 3;
+    }
+    if((val[3] % 4) === 2 ){
+      return 2;
+    }
+    if((val[3] % 4) === 1 ){
+      return 1;
+    }
+    if((val[3] % 4) === 0 ){
+      return 0;
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -37,8 +55,17 @@ export class ScrumboardComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
      
     } else {
+      console.log(event.container.id)
+      console.log(event.item.data)
+      event.item.data[2] = this.calculateRole(event.container.id)
+      console.log(event.item.data)
+      this._scrumdataService.updateStatus(event.item.data).subscribe(
+        data => (console.log(data)),
+        err => (console.log(err))
+      )
+      
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      this.updateStatus(event.item.element.nativeElement.textContent);
+      
     }
   }
 
@@ -65,27 +92,7 @@ export class ScrumboardComponent implements OnInit {
     })
   }
 
-  
 
-  updateStatus(data){
-
-    let token = localStorage.getItem('token');
-    let Auth = JSON.parse(localStorage.getItem('Auth'));
-    let encode = btoa(`${Auth.email}:${Auth.password}`);
-    let newlist = data.trim();
-    newlist = newlist.split(" ");
-    console.log(newlist)
-    const stat = newlist[newlist.length - 2]
-    const num = newlist[newlist.length - 1];
-    console.log(stat, num);
-    
-    return this.http.patch('http://liveapi.chatscrum.com/scrum/api/scrumgoals/' + num + '/', {status : stat}, {
-      headers: new HttpHeaders().set('Authorization', `Basic ${encode}==`)
-    } ).subscribe(
-      result => (console.log(result)),
-      err => console.log(err)
-    )
-  }
 
   getProjectGoals() {
     this._scrumdataService.allProjectGoals(this.project_id).subscribe(

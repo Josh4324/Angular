@@ -5,7 +5,7 @@
         <div cdkDropList #TFTWList="cdkDropList" [cdkDropListData]="TFTW"
         [cdkDropListConnectedTo]="[TFTDList, VERIFYList, DONEList]" 
         (cdkDropListDropped)=drop($event)>
-            <div *ngFor="let item of TFTW;" class="pd" cdkDrag>
+            <div *ngFor="let item of TFTW;" class="pd" [cdkDragData]="item" cdkDrag>
                 <div>{{ item[0] }}</div>
                 {{ item[1] }}
               <div class="hide">

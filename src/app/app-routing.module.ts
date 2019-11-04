@@ -6,6 +6,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 import { AuthGuard } from './auth.guard';
 import { CreateprojectComponent } from './createproject/createproject.component';
+import { ChangeroleComponent } from './changerole/changerole.component';
+import { ChangeroleGuard } from './changerole.guard';
 
 
 const routes: Routes = [
@@ -15,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {path: 'createproject', component: CreateprojectComponent},
   { path: 'scrumboard/:project_id', component: ScrumboardComponent, canActivate:[AuthGuard] },
-
+  { path: 'changerole/:project_id', component: ChangeroleComponent, canActivate:[AuthGuard, ChangeroleGuard]}
 ];
 
 @NgModule({

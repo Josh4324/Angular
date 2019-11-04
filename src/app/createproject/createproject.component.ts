@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScrumdataService } from '../scrumdata.service';
 import { Router } from '@angular/router';
+import {ScrumboardComponent } from '../scrumboard/scrumboard.component'
 
 @Component({
   selector: 'app-createproject',
@@ -15,6 +16,7 @@ export class CreateprojectComponent implements OnInit {
     projname: "",
 };
   Response: string;
+  
 
   constructor(private Scrumdata: ScrumdataService, private router: Router) { }
 
@@ -26,7 +28,7 @@ export class CreateprojectComponent implements OnInit {
     this.Scrumdata.createProject(this.ProjectData).subscribe(
       data => {
         console.log('success: ', data);
-        this.router.navigate(['/home'])
+        this.router.navigate(['/home/'])
       },
       error => {
         console.log('error: ', error);

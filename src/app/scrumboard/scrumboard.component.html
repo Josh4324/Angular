@@ -1,5 +1,5 @@
 
-<a href="/changerole/:{{project_id}}">Change Role</a>
+<a href="/changerole/{{project_id}}">Change Role</a>
 
 <div class="row table mt-3">
     <div class="col ">
@@ -8,12 +8,16 @@
         [cdkDropListConnectedTo]="[TFTDList, VERIFYList, DONEList]" 
         (cdkDropListDropped)=drop($event)>
             <div *ngFor="let item of TFTW;" class="pd" [cdkDragData]="item" cdkDrag>
-                <div>{{ item[0] }}</div>
-                {{ item[1] }}
-              <div class="hide">
                 
-                {{item[2]}}
-                {{item[3]}}
+
+                        <div>{{ item[1] }}</div>
+                        {{ item[2] }}
+                      <div class="hide">
+                        
+                        {{item[3]}}
+                        {{item[4]}}
+               
+               
               </div> 
               
             </div>
@@ -24,14 +28,14 @@
         <h3>TFTD List</h3>
         <div cdkDropList #TFTDList="cdkDropList" [cdkDropListData]="TFTD"
         [cdkDropListConnectedTo]="[TFTWList, VERIFYList, DONEList]" 
-        (cdkDropListDropped)=drop($event)>
+        (cdkDropListDropped)=drop($event) [cdkDropListEnterPredicate]="evenPredicate">
             <div *ngFor="let item of TFTD;" class="pd" cdkDrag [cdkDragData]="item">
-                <div> {{ item[0] }}</div>
-                {{ item[1] }}
+                <div> {{ item[1] }}</div>
+                {{ item[2] }}
                 <div class="hide">
                  
-                  {{item[2]}}
                   {{item[3]}}
+                  {{item[4]}}
                 </div> 
             </div>
         </div>
@@ -41,14 +45,14 @@
         <h3>VERIFY List</h3>
         <div cdkDropList #VERIFYList="cdkDropList" [cdkDropListData]="VERIFY"
         [cdkDropListConnectedTo]="[TFTWList, TFTDList, DONEList]" 
-        (cdkDropListDropped)=drop($event)>
+        (cdkDropListDropped)=drop($event) [cdkDropListEnterPredicate]="evenPredicate1">
             <div *ngFor="let item of VERIFY;" cdkDrag class="pd" [cdkDragData]="item">
-                <div>{{ item[0] }}</div>
-                {{ item[1] }}
+                <div>{{ item[1] }}</div>
+                {{ item[2] }}
                 <div class="hide">
                   
-                  {{item[2]}}
                   {{item[3]}}
+                  {{item[4]}}
                 </div> 
             </div>
         </div>
@@ -58,14 +62,14 @@
         <h3>DONE List</h3>
         <div cdkDropList #DONEList="cdkDropList" [cdkDropListData]="DONE"
         [cdkDropListConnectedTo]="[TFTWList, TFTDList, VERIFYList]" 
-        (cdkDropListDropped)=drop($event)>
+        (cdkDropListDropped)=drop($event) [cdkDropListEnterPredicate]="evenPredicate2">
             <div *ngFor="let item of DONE;" cdkDrag class="pd" [cdkDragData]="item">
-                <div>{{ item[0] }}</div>
-                {{ item[1] }}
+                <div>{{ item[1] }}</div>
+                {{ item[2] }}
               <div class="hide">
                 
-                {{item[2]}}
                 {{item[3]}}
+                {{item[4]}}
               </div> 
             </div>
         </div>

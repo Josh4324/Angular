@@ -13,7 +13,9 @@ export class ScrumdataService {
   url = 'https://liveapi.chatscrum.com/scrum/api/scrumusers/';
   loginurl = 'https://liveapi.chatscrum.com/scrum/api-token-auth/';
   _scrumProjectUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumprojects/';
+  _createProjectUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumusers/'
   goalUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumgoals/'
+  updateRoleUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumprojectroles/';
   token;
   encode;
 
@@ -36,7 +38,7 @@ export class ScrumdataService {
     this.token = this.getUser().token;
     this.encode = JSON.parse(localStorage.getItem('Auth'));
     this.encode = btoa(`${this.encode.email}:${this.encode.password}`);
-    return this.http.patch(this.goalUrl + user.id + '/', {role: user.role}, {headers: new HttpHeaders()
+    return this.http.patch(this.updateRoleUrl + user.id + '/', {role: user.role}, {headers: new HttpHeaders()
     .set('Authorization', `Basic ${this.encode}==`)})
   }
 
@@ -44,7 +46,7 @@ export class ScrumdataService {
     this.token = this.getUser().token;
     this.encode = JSON.parse(localStorage.getItem('Auth'));
     this.encode = btoa(`${this.encode.email}:${this.encode.password}`);
-    return this.http.patch(this.goalUrl + user[3] + '/', {status: user[2]}, {headers: new HttpHeaders()
+    return this.http.patch(this.goalUrl + user[4] + '/', {status: user[3]}, {headers: new HttpHeaders()
     .set('Authorization', `Basic ${this.encode}==`)})
   }
 
@@ -57,7 +59,7 @@ export class ScrumdataService {
   }
 
   createProject(projuser) {
-    return this.http.post(this._scrumProjectUrl, { 'email' : projuser['email'], 'full_name' : projuser['fullname'], 'password':'password', 'projname': projuser['projname'], 'usertype':'Owner', 'username':'josh'}, this.httpOptions);
+    return this.http.post(this._createProjectUrl, { 'email' : projuser['email'], 'full_name' : projuser['fullname'], 'password':'password', 'projname': projuser['projname'], 'usertype':'Owner', 'username':'josh'}, this.httpOptions);
   }
 
   getUser(): any {

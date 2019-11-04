@@ -29,6 +29,7 @@ export class ChangeroleComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      console.log(event.item.data)
       event.item.data.role = this.calculateRole(event.container.id);
       this.scrumDataService.updateUser(event.item.data).subscribe(
         data => {

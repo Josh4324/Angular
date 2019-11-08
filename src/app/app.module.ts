@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { ChangeroleComponent } from './changerole/changerole.component';
+import { CreategoalComponent } from './creategoal/creategoal.component';
 
 
 
@@ -27,6 +28,7 @@ import { ChangeroleComponent } from './changerole/changerole.component';
     HomepageComponent,
     CreateprojectComponent,
     ChangeroleComponent,
+    CreategoalComponent,
   ],
   imports: [
     BrowserModule,

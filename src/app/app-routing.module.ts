@@ -8,6 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { CreateprojectComponent } from './createproject/createproject.component';
 import { ChangeroleComponent } from './changerole/changerole.component';
 import { ChangeroleGuard } from './changerole.guard';
+import { CreategoalComponent } from './creategoal/creategoal.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {path: 'createproject', component: CreateprojectComponent},
   { path: 'scrumboard/:project_id', component: ScrumboardComponent, canActivate:[AuthGuard] },
-  { path: 'changerole/:project_id', component: ChangeroleComponent, canActivate:[AuthGuard, ChangeroleGuard]}
+  { path: 'changerole/:project_id', component: ChangeroleComponent, canActivate:[AuthGuard, ChangeroleGuard]},
+  { path: 'creategoal/:id', component: CreategoalComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

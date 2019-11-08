@@ -72,28 +72,42 @@ export class ScrumboardComponent implements OnInit {
   filter(data) {
     let obj = data["data"]
     console.log(this.loggedUser)
-    console.log(obj)
+   // console.log(obj)
     Object.keys(obj).map((data1) => {
       obj[data1].scrumgoal_set.map((list) => {
           if (list.status === 0){
            
-            this.TFTW.push( [obj[data1].role,obj[data1].user.nickname, list.name,list.status, list.id, this.loggedUser.name ] )
+            this.TFTW.push( [obj[data1].role,obj[data1].user.nickname, list.name,list.status, list.id, this.loggedUser.name,this.loggedUser.role ] )
             
           }
           if (list.status === 1){
-            this.TFTD.push([obj[data1].role,obj[data1].user.nickname, list.name,list.status, list.id, this.loggedUser.name ] )
+            this.TFTD.push([obj[data1].role,obj[data1].user.nickname, list.name,list.status, list.id, this.loggedUser.name,this.loggedUser.role ] )
           }
           if (list.status === 2){
-            this.VERIFY.push([obj[data1].role,obj[data1].user.nickname, list.name, list.status,  list.id, this.loggedUser.name ] )
+            this.VERIFY.push([obj[data1].role,obj[data1].user.nickname, list.name, list.status,  list.id, this.loggedUser.name,this.loggedUser.role ] )
           }
           if (list.status === 3){
-            this.DONE.push([obj[data1].role,obj[data1].user.nickname, list.name, list.status,  list.id, this.loggedUser.name ] )
+            this.DONE.push([obj[data1].role,obj[data1].user.nickname, list.name, list.status,  list.id, this.loggedUser.name,this.loggedUser.role ] )
           }
       })
 
     })
-    console.log(this.TFTW)
+    
   }
+
+  startSprint() {
+    let data1 = { project_id: this.loggedUser.project_id}
+    this._scrumdataService.createSprint(data1).subscribe(
+        result => {
+          console.log(result);
+        },
+        err => (console.log(err))
+    )  
+
+  }
+
+  
+
 
 
 
@@ -101,6 +115,7 @@ export class ScrumboardComponent implements OnInit {
     console.log(this.project_id)
     this._scrumdataService.allProjectGoals(this.project_id).subscribe(
       data => {
+        
         this.filter(data);
         this._participants = data["data"];
       },
@@ -111,19 +126,19 @@ export class ScrumboardComponent implements OnInit {
   }
 
   evenPredicate0(item) {
-    return ( (item.data[5] === item.data[1] && item.data[3] === 2 && item.data[0] === "Quality Analyst") || (item.data[0] === "Owner" && item.data[5] === item.data[1]) || (item.data[0] === "Admin" && item.data[5] === item.data[1]) )
+    return ( (item.data[5] === item.data[1] && item.data[3] === 2 && item.data[0] === "Quality Analyst") || (item.data[6] === "Owner") || (item.data[6] === "Admin") )
   }
 
   evenPredicate(item) {
-    return ( (item.data[5] === item.data[1] && item.data[3] === 0 && item.data[0] === "Developer") || (item.data[0] === "Owner" && item.data[5] === item.data[1]) || (item.data[0] === "Admin" && item.data[5] === item.data[1])  )
+    return ( (item.data[5] === item.data[1] && item.data[3] === 0 && item.data[0] === "Developer") || (item.data[6] === "Owner") || (item.data[6] === "Admin")  )
   } 
 
   evenPredicate1(item) {
-    return ( (item.data[5] === item.data[1] && item.data[3] === 1 && item.data[0] === "Developer") || (item.data[0] === "Owner" && item.data[5] === item.data[1]) || (item.data[0] === "Admin" && item.data[5] === item.data[1]) )
+    return ( (item.data[5] === item.data[1] && item.data[3] === 1 && item.data[0] === "Developer") || (item.data[6] === "Owner") || (item.data[6] === "Admin") )
   }
 
   evenPredicate2(item) {
-    return ( (item.data[5] === item.data[1] && item.data[3] === 2 && item.data[0] === "Quality Analyst") || (item.data[0] === "Owner" && item.data[5] === item.data[1]) || (item.data[0] === "Admin" && item.data[5] === item.data[1])  )
+    return ( (item.data[5] === item.data[1] && item.data[3] === 2 && item.data[0] === "Quality Analyst") || (item.data[6] === "Owner") || (item.data[6] === "Admin")  )
   }
 
 

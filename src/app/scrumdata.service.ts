@@ -16,6 +16,8 @@ export class ScrumdataService {
   _createProjectUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumusers/'
   goalUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumgoals/'
   updateRoleUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumprojectroles/';
+  addGoalUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumgoals/';
+  sprintUrl = 'https://liveapi.chatscrum.com/scrum/api/scrumsprint/';
   token;
   encode;
 
@@ -50,6 +52,14 @@ export class ScrumdataService {
     .set('Authorization', `Basic ${this.encode}==`)})
   }
 
+  addGoal(user): Observable<any> {
+    this.token = this.getUser().token;
+    this.encode = JSON.parse(localStorage.getItem('Auth'));
+    this.encode = btoa(`${this.encode.email}:${this.encode.password}`);
+    return this.http.post(this.addGoalUrl, {name: user.goalname, project_id: user.id, user:user.user}, {headers: new HttpHeaders()
+    .set('Authorization', `Basic ${this.encode}==`)})
+  }
+
   loggedIn() {
     return !!localStorage.getItem('token');
   }
@@ -60,6 +70,16 @@ export class ScrumdataService {
 
   createProject(projuser) {
     return this.http.post(this._createProjectUrl, { 'email' : projuser['email'], 'full_name' : projuser['fullname'], 'password':'password', 'projname': projuser['projname'], 'usertype':'Owner', 'username':'josh'}, this.httpOptions);
+  }
+
+
+  createSprint(data): Observable<any> {
+    this.token = this.getUser().token;
+    this.encode = JSON.parse(localStorage.getItem('Auth'));
+    this.encode = btoa(`${this.encode.email}:${this.encode.password}`);
+    console.log(data.project_id)
+    return this.http.post(this.sprintUrl + "?" + 'goal_project_id=' + data.project_id, { 'project_id': data.project_id}, {headers: new HttpHeaders()
+    .set('Authorization', `Basic ${this.encode}==`).append('Content-Type', 'application/json')}, )
   }
 
   getUser(): any {

@@ -1,0 +1,44 @@
+
+
+  <div class="container-fluid auto px-4 py-4 contain2 card" id="login">
+
+    <h3 class="text-center">Create Goal</h3>
+
+    <div class="row">
+      <div class="col-lg image">
+          <img class="row-img mt-5" src="https://res.cloudinary.com/josh4324/image/upload/v1572963010/goal_ags1ph.png" alt="goal">
+          
+      </div>
+
+      <div class="col-lg goal">
+        <form #form2="ngForm" (ngSubmit)="onCreateGoal()">
+
+
+          <div class="form-group">
+            <label for="projectName">Goal Name</label>
+            <div class="input-container">
+              <i class="fas fa-tasks icon"></i>
+              <input type="text" class="form-control px-5" name="goal" #goalname="ngModel" id="goalName" [class.is-invalid]="goalname.invalid && goalname.touched"   [(ngModel)]="goalData.goalname" required placeholder="Goal Name">
+            </div>
+            <div [hidden]="goalname.untouched || goalname.valid" class="alert alert-danger px-2 py-2">
+                Enter the Goal Name
+            </div>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary mt-3">Create Goal</button>
+
+          <div [hidden]="!form2.submitted" class="alert alert-danger text-center mt-3 px-2 py-2">
+            <h5>{{ Response }}</h5>
+        </div>
+        </form>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+

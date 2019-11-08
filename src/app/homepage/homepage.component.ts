@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrumdataService } from '../scrumdata.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  loggedUser;
+  loggedIn;
+  id
+
+  constructor(private _scrumdataService: ScrumdataService) { }
 
   ngOnInit() {
+    this.loggedUser = this._scrumdataService.getUser();
+    this.loggedIn = this._scrumdataService.loggedIn();
   }
 
 }

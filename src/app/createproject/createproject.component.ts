@@ -16,11 +16,13 @@ export class CreateprojectComponent implements OnInit {
     projname: "",
 };
   Response: string;
+  loggedUser;
   
 
   constructor(private Scrumdata: ScrumdataService, private router: Router) { }
 
   ngOnInit() {
+    this.loggedUser = this.Scrumdata.getUser();
   }
 
   onLoginProject(){

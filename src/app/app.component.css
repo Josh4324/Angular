@@ -40,3 +40,14 @@ nav a {
     text-align: center;
   }
 
+  .but {
+    padding: 5px 10px;
+    margin-left:10px;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 4px;
+    color: blue !important;
+  }
+

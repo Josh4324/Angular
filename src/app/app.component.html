@@ -1,9 +1,9 @@
 <div class="container-fluid">
 
       <a href="/home">Home</a>
+      <a *ngIf="loggedIn === true" (click)="logOut()" class="but" href="/home">Log Out</a>
+    
       <h1 class="text-center pt-1">Welcome to ChatScrum</h1>
-        
-
     <router-outlet></router-outlet>
 </div>
 

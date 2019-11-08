@@ -17,6 +17,9 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.loggedUser = this._scrumdataService.getUser();
     this.loggedIn = this._scrumdataService.loggedIn();
+    this.id = this.loggedUser.project_id
   }
+
+  
 
 }
